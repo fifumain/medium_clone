@@ -6,6 +6,7 @@ from .views import (
     ProfileListAPIView,
     UnfollowAPIView,
     UpdateProfileAPIView,
+    FollowingListAPIView,
 )
 
 urlpatterns = [
@@ -13,8 +14,7 @@ urlpatterns = [
     path("me/", ProfileDetailAPIView.as_view(), name="my-profile"),
     path("me/update/", UpdateProfileAPIView.as_view(), name="update-profile"),
     path("me/followers/", FollowerListView.as_view(), name="followers"),
+    path("me/following/", FollowingListAPIView.as_view(), name="following"),
     path("<uuid:user_id>/follow/", FollowAPIView.as_view(), name="follow"),
     path("<uuid:user_id>/unfollow/", UnfollowAPIView.as_view(), name="unfollow"),
-
-
 ]

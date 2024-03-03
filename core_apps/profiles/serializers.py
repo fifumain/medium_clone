@@ -4,17 +4,30 @@ from .models import Profile
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    # source mean that we can get info from related object
     first_name = serializers.CharField(source="user.first_name")
     last_name = serializers.CharField(source="user.last_name")
     email = serializers.EmailField(source="user.email")
+    # Methods for fields below
     full_name = serializers.SerializerMethodField(read_only=True)
     profile_photo = serializers.SerializerMethodField()
     country = CountryField(name_only=True)
 
     class Meta:
         model = Profile
-        fields = ["id", "first_name", "last_name", "full_name", "email", "profile_photo",
-                  "country", "phone_number", "gender", "twitter_handle", "about_me"]
+        fields = [
+            "id",
+            "first_name",
+            "last_name",
+            "full_name",
+            "email",
+            "profile_photo",
+            "country",
+            "phone_number",
+            "gender",
+            "twitter_handle",
+            "about_me",
+        ]
 
     def get_full_name(self, obj):
         first_name = obj.user.first_name.title()
@@ -25,6 +38,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         return obj.profile_photo.url
 
 
+# For patch requests in profile object
 class UpdateProfileSerializer(serializers.ModelSerializer):
     country = CountryField(name_only=True)
 
@@ -41,10 +55,18 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
         ]
 
 
+# Serializer to show our following list
 class FollowingSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(source="user.first_name")
     last_name = serializers.CharField(source="user.last_name")
 
     class Meta:
         model = Profile
-        fields = ["first_name", "last_name", "about_me", "profile_photo", "twitter_handle"]
+        # All required fields to make it look good, like in X(twitter)
+        fields = [
+            "first_name",
+            "last_name",
+            "profile_photo",
+            "about_me",
+            "twitter_handle",
+        ]
