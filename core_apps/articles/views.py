@@ -4,14 +4,15 @@ from rest_framework.response import Response
 from rest_framework import filters, generics, permissions, status
 from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth import get_user_model
-from .models import Article, ArticleView
-from .serializers import ArticleSerializer
+from .models import Article, ArticleView, Clap
+from .serializers import ArticleSerializer, ClapSerializer
 from .filters import ArticleFilter
 from .pagination import ArticlePagination
 from .renderers import ArticleJsonRenderer, ArticlesJsonRenderer
 from .permissions import IsOwnerOrReadOnly
 from django.core.files.storage import default_storage
 from rest_framework.parsers import MultiPartParser, FormParser
+from django.shortcuts import get_object_or_404
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -80,6 +81,39 @@ class ArticleRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
             article=instance, user=request.user, viewer_ip=viewer_ip
         )
         return Response(serializer.data)
+
+
+class ClapArticleView(generics.CreateAPIView, generics.DestroyAPIView):
+    queryset = Clap.objects.all()
+    serializer_class = ClapSerializer
+
+    def create(self, request, *args, **kwargs):
+        user = request.user
+        article_id = kwargs.get("article_id")
+        article = get_object_or_404(Article, id=article_id)
+        if Clap.objects.filter(user=user, article=article).exists():
+            return Response(
+                {"detail": "You have already clapped on this article"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        clap = Clap.objects.create(user=user, article=article)
+        clap.save()
+
+        return Response(
+            {"detail": "Clapp added to article"},
+            status=status.HTTP_201_CREATED,
+        )
+
+    def delete(self, request, *args, **kwargs):
+        user = request.user
+        article_id = kwargs.get("article_id")
+        article = get_object_or_404(Article, id=article_id)
+        clap = get_object_or_404(Clap, user=user, article=article)
+        clap.delete()
+        return Response(
+            {"detail": "Clapp returned article"},
+            status=status.HTTP_204_NO_CONTENT,
+        )
 
 
 # TODO: add ability to see all the reviews to the article
