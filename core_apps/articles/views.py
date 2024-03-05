@@ -80,3 +80,6 @@ class ArticleRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
             article=instance, user=request.user, viewer_ip=viewer_ip
         )
         return Response(serializer.data)
+
+
+# TODO: add ability to see all the reviews to the article

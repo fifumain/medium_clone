@@ -57,7 +57,7 @@ class ArticleView(TimeStampedModel):
         verbose_name_plural = _("Article Views")
         unique_together = ["article", "user", "viewer_ip"]
 
-    def __str__(self) -> str:
+    def __str__(self):
         return f"{self.article.title} viewed by {self.user.first_name if  self.user else 'Anonymous'} from IP: {self.viewer_ip}"
 
     @classmethod
