@@ -7,7 +7,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomUserManager(BaseUserManager):
-
     # Method for validating email
     def email_validator(self, email):
         try:
@@ -18,7 +17,6 @@ class CustomUserManager(BaseUserManager):
 
     # Method for creating a user
     def create_user(self, first_name, last_name, email, password, **extra_fields):
-
         if not first_name:
             raise ValueError(_("You must provide a first name"))
 
@@ -34,8 +32,9 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_("User must provide an email address"))
 
         # Create a new user with the provided information
-        user = self.model(first_name=first_name, last_name=last_name,
-                          email=email, **extra_fields)
+        user = self.model(
+            first_name=first_name, last_name=last_name, email=email, **extra_fields
+        )
 
         # Set the user's password
         user.set_password(password)

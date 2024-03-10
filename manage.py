@@ -5,7 +5,7 @@ import sys
 
 
 def main():
-    """Run administrative tasks. """
+    """Run administrative tasks."""
     # TODO: CHANGE IT IN PRODUCTION!!!!!!!!!! AT WSGI ALSO
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "authors_api.settings.local")
     try:
