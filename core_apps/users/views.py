@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from .serializers import UserSerializer
 
 
+# simple output of user info
 class CustomUserDetailsView(RetrieveUpdateAPIView):
     serializer_class = UserSerializer
     permission_classes = (IsAuthenticated,)

@@ -19,8 +19,9 @@ class RatingCreateView(generics.CreateAPIView):
         if article_id:
             try:
                 article = Article.objects.get(id=article_id)
+            # django included exception
             except Article.DoesNotExist:
-                raise ValidationError("Invalid article id provided")
+                raise ValidationError("Invalid article_id provided")
         else:
             raise ValidationError("Article id is required")
         try:

@@ -30,6 +30,7 @@ class UserSerializer(serializers.ModelSerializer):
             "city",
         ]
 
+    # need to use to representation to make output look better and readable
     def to_representation(self, instance):
         representation = super(UserSerializer, self).to_representation(instance)
         if instance.is_superuser:
@@ -37,6 +38,7 @@ class UserSerializer(serializers.ModelSerializer):
         return representation
 
 
+# simple registration serialization process
 class CustomRegisterSerializer(RegisterSerializer):
     username = None
     first_name = serializers.CharField(required=True)

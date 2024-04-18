@@ -5,11 +5,13 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+# I use that to be able to change user info in Django admin panel
 class UserChangeForm(admin_forms.UserChangeForm):
     class Meta(admin_forms.UserChangeForm.Meta):
         model = User
 
 
+# I use that to be able to create user in Django admin panel
 class UserCreationForm(admin_forms.UserCreationForm):
     class Meta(admin_forms.UserCreationForm.Meta):
         model = User

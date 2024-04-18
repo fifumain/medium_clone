@@ -33,12 +33,14 @@ class Article(TimeStampedModel):
     banner_image = models.ImageField(
         verbose_name=_("banner image"), default="/profile_default.png"
     )
+    # simple tags for our model
     tags = TaggableManager()
     claps = models.ManyToManyField(User, through=Clap, related_name="clapped_articles")
 
     def __str__(self):
         return f"{self.author.first_name} article"
 
+    # code for receieving estimated reading time, calculated in read_time_engine.py
     @property
     def estimated_reading_time(self):
         return ArticleReadTimeEngine.estimate_reading_time(self)
@@ -46,6 +48,7 @@ class Article(TimeStampedModel):
     def view_count(self):
         return self.article_views.count()
 
+    # simplest way to get the number of average article rating
     def average_rating(self):
         ratings = self.ratings.all()
         if ratings.count() > 0:
@@ -62,6 +65,7 @@ class ArticleView(TimeStampedModel):
     user = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, related_name="user_views"
     )
+    # Need to count only one view from one user
     viewer_ip = models.GenericIPAddressField(
         verbose_name=_("viewer IP"), null=True, blank=True
     )
@@ -76,6 +80,7 @@ class ArticleView(TimeStampedModel):
 
     @classmethod
     def record_view(cls, article, user, viewer_ip):
+        # cls stands for class in this method (like self for objects)
         view, _ = cls.objects.get_or_create(
             article=article, user=user, viewer_ip=viewer_ip
         )

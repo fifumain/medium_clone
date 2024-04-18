@@ -8,6 +8,7 @@ from .models import Response
 from .serializers import ResponseSerializer
 
 
+# some basic views to make user able to create, edit, delete or list all the responses, that needed
 class ResponseListCreateView(generics.ListCreateAPIView):
     queryset = Response.objects.all()
     serializer_class = ResponseSerializer

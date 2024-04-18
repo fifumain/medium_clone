@@ -22,6 +22,7 @@ class Bookmark(models.Model):
     )
 
     class Meta:
+        # need to provide bookmarking functionality of one article only once for each user
         unique_together = ["user", "article"]
         ordering = ["-created_at"]
 

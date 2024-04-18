@@ -23,6 +23,7 @@ class Rating(TimeStampedModel):
     review = models.TextField(blank=True)
 
     class Meta:
+        # letting the user to vote only once
         unique_together = ("article", "user")
         verbose_name = "Rating"
         verbose_name_plural = "Ratings"

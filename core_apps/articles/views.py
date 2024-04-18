@@ -20,6 +20,7 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
+# base view, nothing special or complicated
 class ArticleListCreateView(generics.ListCreateAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
@@ -62,6 +63,7 @@ class ArticleRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_update(self, serializer):
         instance = serializer.save(author=self.request.user)
+        # changing the banner image of an article
         if "banner_image" in self.request.FILES:
             if (
                 instance.banner_image
@@ -89,6 +91,7 @@ class ClapArticleView(generics.CreateAPIView, generics.DestroyAPIView):
     queryset = Clap.objects.all()
     serializer_class = ClapSerializer
 
+    # clap and unclap functionality are provided
     def create(self, request, *args, **kwargs):
         user = request.user
         article_id = kwargs.get("article_id")
@@ -118,4 +121,4 @@ class ClapArticleView(generics.CreateAPIView, generics.DestroyAPIView):
         )
 
 
-# TODO: add ability to see all the reviews to the article
+# TODO: add ability to see all the reviews to the article !

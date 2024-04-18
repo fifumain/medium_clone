@@ -18,7 +18,7 @@ class BookmarkCreateView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         article_id = self.kwargs.get("article_id")
-
+        # dimple validation process for bookmarking the article
         if article_id:
             try:
                 article = Article.objects.get(id=article_id)
@@ -41,18 +41,20 @@ class BookmarkDestroyView(generics.DestroyAPIView):
         user = self.request.user
         article_id = self.kwargs.get("article_id")
         try:
+            # UUIDv4 to make sure that identificators are really unique
             UUID(str(article_id), version=4)
         except ValueError:
             raise ValidationError("Invalid article_id provided.")
         try:
             bookmark = Bookmark.objects.get(user=user, article__id=article_id)
         except Bookmark.DoesNotExist:
-            raise NotFound("Bookmark not found or it doesn't belong to you")
+            raise NotFound("Bookmark not found or it does not belong to you")
 
         return bookmark
 
     def perform_destroy(self, instance):
         user = self.request.user
+        # basic validation of the user that authorized and owner of the bookmark
         if instance.user != user:
             raise ValidationError("You cannot delete a bookmark, that is not yours.")
         instance.delete()

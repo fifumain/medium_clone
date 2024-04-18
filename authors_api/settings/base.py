@@ -224,7 +224,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 
 ELASTICSEARCH_DSL = {
     "default": {
-        "hosts": "es:9200",  # es - name of container in yml!!
+        "hosts": "es:9200",  # es - name of container in yml!! + port 9200
     },
 }
 

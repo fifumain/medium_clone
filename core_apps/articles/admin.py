@@ -3,6 +3,7 @@ from django.contrib import admin
 from . import models
 
 
+# default setup for articles in admin panel
 class ArticleAdmin(admin.ModelAdmin):
     list_display = [
         "pkid",
@@ -29,6 +30,7 @@ class ArticleAdmin(admin.ModelAdmin):
     ]
 
 
+# default setup for the views of articles in admin panel
 class ArticleViewAdmin(admin.ModelAdmin):
     list_display = [
         "pkid",
@@ -51,6 +53,7 @@ class ArticleViewAdmin(admin.ModelAdmin):
     ]
 
 
+# default setup for article claps in admin panel
 class ClapAdmin(admin.ModelAdmin):
     list_display = ["pkid", "id", "user", "article"]
     list_display_links = ["id", "user"]

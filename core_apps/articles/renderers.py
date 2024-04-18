@@ -3,6 +3,7 @@ import json
 from rest_framework.renderers import JSONRenderer
 
 
+# baaic rendered to make json look  better + response info with status code in it
 class ArticleJsonRenderer(JSONRenderer):
     charset = "utf-8"
 
@@ -23,6 +24,7 @@ class ArticleJsonRenderer(JSONRenderer):
         return json.dumps({"status_code": status_code, "article": data})
 
 
+# Same as previous, but for numerous articles
 class ArticlesJsonRenderer(JSONRenderer):
     charset = "utf-8"
 

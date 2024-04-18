@@ -15,6 +15,7 @@ from .serializers import ArticleElasticSearchSerializer
 class ArticleElasticSearchView(DocumentViewSet):
     document = ArticleDocument
     serializer_class = ArticleElasticSearchSerializer
+    # lookup_field is used in <uuid:article_id> in urls
     lookup_field = "id"
     permission_classes = [permissions.AllowAny]
 

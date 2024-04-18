@@ -19,6 +19,7 @@ class Response(TimeStampedModel):
         on_delete=models.CASCADE,
         related_name="responses",
     )
+    # needed for be able to response to other response
     parent_response = models.ForeignKey(
         "self",
         on_delete=models.CASCADE,
@@ -34,4 +35,4 @@ class Response(TimeStampedModel):
         ordering = ["created_at"]
 
         def __str__(self):
-            return f"{self.user.first_name} cmmented on {self.article.title}"
+            return f"{self.user.first_name} commented on {self.article.title}"

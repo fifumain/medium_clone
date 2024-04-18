@@ -25,6 +25,7 @@ class TagListField(serializers.Field):
         return tag_objects
 
 
+# base articles serializer, nothing special or complicated, just huge
 class ArticleSerializer(serializers.ModelSerializer):
     author_info = ProfileSerializer(source="author.profile", read_only=True)
     banner_image = serializers.SerializerMethodField()
@@ -119,6 +120,7 @@ class ArticleSerializer(serializers.ModelSerializer):
         ]
 
 
+# also basic, almost default serialization for claps
 class ClapSerializer(serializers.ModelSerializer):
     article_title = serializers.CharField(source="article.title", read_only=True)
     user_first_name = serializers.CharField(source="user.first_name", read_only=True)

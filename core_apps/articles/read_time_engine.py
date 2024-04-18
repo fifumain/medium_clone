@@ -3,11 +3,13 @@ from math import ceil
 
 
 class ArticleReadTimeEngine:
+    # using base regular expression for counting words
     @staticmethod
     def word_count(text):
         words = re.findall(r"\w+", text)
         return len(words)
 
+    # simple calculations for reading time value
     @staticmethod
     def estimate_reading_time(
         article, words_per_minute=250, seconds_per_image=10, seconds_per_tag=2

@@ -4,6 +4,7 @@ from django.core.validators import validate_email
 from django.utils.translation import gettext_lazy as _
 
 
+# make my own user manager
 class CustomUserManager(BaseUserManager):
     def email_validator(self, email):
         try:
