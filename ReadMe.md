@@ -19,21 +19,21 @@ Welcome! This project is a clone of the popular medium.com website. At the momen
 
 ## Introduction
 
-This project is a website where everyone can view different articles, leave reactions, reviews, add articles to bookmarks. To use most of the functionality, registration is required, a specially created user-friendly system, including various security checks, such as email verification, etc., is required.
+This project is a website where everyone can view different articles, leave reactions, and reviews, and add articles to bookmarks. To use most of the functionality, registration is required, and a specially created user-friendly system, including various security checks, such as email verification, etc., is required.
 
 ## Roadmap
 
-- Upgrade logging system.
+- Upgrade the logging system.
 
 - Add cache system.
 
 - Integrate login via socials.
 
-- Develop frontend part.
+- Develop the frontend part.
 
 ## Documentation
 
-Visit [API Documentation](fifumain.site/redoc/) to see all avaliable API requests.
+Visit [API Documentation](fifumain.site/redoc/) to see all available API requests.
 
 ## Prerequisites
 
@@ -44,7 +44,7 @@ You need to have Python and Docker installed. Code developen and testet at Pytho
 
 - Clone repository:
   `git clone https://github.com/fifumain/medium_clone.git`
-- Install required libraries, using command line:
+- Install required libraries, using the command line:
   `pip install -r local.txt`
 - Change variables in envs/local.
 - Run: `make build`
@@ -55,7 +55,7 @@ You need to have Python and Docker installed. Code developen and testet at Pytho
 
 ## Usage
 
-See Makefile for avaliable usage commands.
+See Makefile for available usage commands.
 
 ## Running Tests {#running-tests}
 
