@@ -19,7 +19,7 @@ Welcome! This project is a clone of the popular medium.com website. At the momen
 
 ## Introduction
 
-This project is a website where everyone can view different articles, leave reactions, and reviews, and add articles to bookmarks. To use most of the functionality, registration is required, and a specially created user-friendly system, including various security checks, such as email verification, etc., is required.
+This project is a website where everyone can view various articles, leave reactions and feedback, and add articles to their bookmarks. Registration is required to use most of the features, and there is a specially designed user-friendly system that includes various security checks such as email verification, etc. This project is currently deployed, with addresses both above and below. The deployment utilized docker, a virtual computer, and a bash script that utilizes archiving the project, and further deploying and running it on a remote server.
 
 ## Roadmap
 
