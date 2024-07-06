@@ -1,3 +1,7 @@
+# IMPORTANT UPDATE
+
+It is with great regret that I state that the project has not been rolled out at this time, as there is no way to fund all components of its work. It will definitely come back better, and bigger! te.
+
 # Medium clone by FIFU
 
 Welcome! This project is a clone of the popular medium.com website. At the moment created only the backend component of the site.
